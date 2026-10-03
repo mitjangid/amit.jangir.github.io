@@ -55,6 +55,9 @@
       --ok-ink: #0e7a3c;
       --green: #16a34a;
       --footer-bg: #0d1830;
+      --footer-fg: #e6ecf9;
+      --footer-mut: #9aa9c6;
+      --footer-line: rgba(255, 255, 255, 0.12);
       --hero-grad: linear-gradient(180deg, #edf1fa 0%, var(--bg) 58%);
       --hero-glow: rgba(29, 78, 216, 0.07);
       --shadow-sm: 0 1px 2px rgba(15, 29, 56, 0.05), 0 1px 3px rgba(15, 29, 56, 0.07);
@@ -90,6 +93,9 @@
       --ok-ink: #6ee7b7;
       --green: #34d399;
       --footer-bg: #060b16;
+      --footer-fg: #e8eef9;
+      --footer-mut: #9aa9c6;
+      --footer-line: rgba(255, 255, 255, 0.1);
       --hero-grad: linear-gradient(180deg, #0f1b33 0%, var(--bg) 62%);
       --hero-glow: rgba(122, 162, 255, 0.1);
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
@@ -248,6 +254,7 @@
     }
     .btn svg { width: 16px; height: 16px; flex: none; transition: transform 0.22s ease; }
     .btn:hover svg { transform: translateX(3px); }
+    .btn[download]:hover svg { transform: translateY(3px); }
     .btn:active { transform: translateY(1px) scale(0.985); }
     .btn-primary {
       background: var(--accent);
@@ -268,7 +275,6 @@
     }
     .btn-dark { background: var(--footer-bg); color: #fff; }
     .btn-dark:hover { background: var(--ink); transform: translateY(-1px); }
-    .btn[download]:hover svg { transform: translateY(3px); }
 
     /* mobile menu */
     #mobileMenu {
@@ -714,10 +720,91 @@
       transform: translateY(-1px);
     }
     .ss-products a:hover small { color: var(--accent); }
+    /* upcoming / non-clickable chips */
+    .ss-products span.app-soon {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--faint);
+      background: transparent;
+      border: 1px dashed var(--line-strong);
+      padding: 7px 12px;
+      border-radius: 7px;
+      cursor: default;
+    }
+    .ss-products span.app-soon small { font-size: 11px; font-weight: 500; color: var(--faint); opacity: 0.85; }
+    .ss-soon-row { margin-top: 10px; }
     @media (max-width: 760px) {
       .studio-strip { grid-template-columns: 1fr; gap: 16px; }
       .ss-mark { width: 48px; height: 48px; font-size: 16px; }
       .ss-products .ss-lbl { flex-basis: 100%; }
+    }
+
+    /* open source card */
+    .oss-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
+      align-items: start;
+      margin-top: 22px;
+      padding: clamp(24px, 3vw, 32px);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: background-color 0.35s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .oss-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); }
+    .oss-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 19px;
+      box-shadow: 0 6px 14px -6px rgba(29, 78, 216, 0.5);
+    }
+    .oss-body { min-width: 0; }
+    .oss-cat {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .oss-name { font-size: 21px; font-weight: 700; color: var(--ink); margin-top: 5px; line-height: 1.3; }
+    .oss-name a { transition: color 0.2s ease; }
+    .oss-name a:hover { color: var(--accent); }
+    .oss-name span { display: block; font-size: 14px; font-weight: 500; color: var(--faint); margin-top: 2px; }
+    .oss-desc { color: var(--muted); font-size: 15px; margin-top: 10px; max-width: 82ch; }
+    .oss-desc strong { color: var(--ink-2); font-weight: 600; }
+    .oss-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .oss-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-2);
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      padding: 7px 12px;
+      border-radius: 7px;
+      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .oss-badge svg { width: 14px; height: 14px; color: var(--accent); }
+    .oss-badge:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+    @media (max-width: 860px) {
+      .oss-card { grid-template-columns: auto 1fr; }
+    }
+    @media (max-width: 760px) {
+      .oss-card { grid-template-columns: 1fr; gap: 16px; }
+      .oss-mark { width: 48px; height: 48px; font-size: 16px; }
     }
 
     /* ============================== recognition ============================== */
@@ -1290,7 +1377,7 @@
             <div class="ss-top">
               <div>
                 <span class="ss-cat">Side projects · building in public</span>
-                <h3 class="ss-name">CodeQuackers <span>live apps I design, build and ship myself</span></h3>
+                <h3 class="ss-name">CodeQuackers <span>9 live platforms I design, build and ship myself</span></h3>
               </div>
               <a class="ss-link" href="https://codequackers.in/" target="_blank" rel="noreferrer">
                 See the apps
@@ -1299,17 +1386,57 @@
             </div>
             <p class="ss-desc">
               Personal side projects — real apps used by real customers, iterated fast with AI-assisted development
-              from idea to launch.
+              from idea to launch. <strong>Nine platforms are live in production</strong>, spanning gym, restaurant,
+              lab, bullion, inventory and booking software.
             </p>
             <div class="ss-products">
               <span class="ss-lbl">Live apps</span>
-              <a href="https://powertrack.codequackers.in/" target="_blank" rel="noreferrer">PowerTrack<small>gym</small></a>
-              <a href="https://bizzq.codequackers.in/" target="_blank" rel="noreferrer">BizzQ<small>brand sites</small></a>
-              <a href="https://aquatrack.codequackers.in/" target="_blank" rel="noreferrer">AquaTrack<small>dispensers</small></a>
-              <a href="https://bullionhub.codequackers.in/" target="_blank" rel="noreferrer">BullionHub<small>bullion</small></a>
-              <a href="https://labtrack.codequackers.in/" target="_blank" rel="noreferrer">LabTrack<small>diagnostics</small></a>
+              <a href="https://powertrack.codequackers.in/" target="_blank" rel="noreferrer">PowerTrack<small>gym management</small></a>
+              <a href="https://zaiqo.codequackers.in/" target="_blank" rel="noreferrer">Zaiqo<small>restaurant ERP &amp; POS</small></a>
+              <a href="https://labtrack.codequackers.in/" target="_blank" rel="noreferrer">LabTrack<small>diagnostic labs</small></a>
+              <a href="https://bhavtrack.codequackers.in/" target="_blank" rel="noreferrer">BhavTrack<small>bullion rates</small></a>
+              <a href="https://billnbin.codequackers.in/" target="_blank" rel="noreferrer">BillNBin<small>inventory &amp; GST</small></a>
+              <a href="https://aquatrack.codequackers.in/" target="_blank" rel="noreferrer">AquaTrack<small>dispenser rentals</small></a>
               <a href="https://reservo.codequackers.in/" target="_blank" rel="noreferrer">Reservo<small>booking</small></a>
-              <a href="https://zaiqo.codequackers.in/" target="_blank" rel="noreferrer">Zaiqo<small>restaurants</small></a>
+              <a href="https://nocturne.codequackers.in/" target="_blank" rel="noreferrer">Nocturne<small>bar &amp; club</small></a>
+              <a href="https://bizzq.codequackers.in/" target="_blank" rel="noreferrer">BizzQ<small>brand sites</small></a>
+            </div>
+            <div class="ss-products ss-soon-row">
+              <span class="ss-lbl">In build</span>
+              <span class="app-soon">Adhiti<small>76-module institute ERP</small></span>
+              <a href="https://bytepress.codequackers.in/" target="_blank" rel="noreferrer">BytePress<small>news portal · Astro + Go</small></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- open source contribution -->
+        <div class="oss-card rv">
+          <div class="oss-mark" aria-hidden="true">KG</div>
+          <div class="oss-body">
+            <span class="oss-cat">Open source · published on PyPI</span>
+            <h3 class="oss-name">
+              <a href="https://github.com/mitjangid/Kalagana" target="_blank" rel="noreferrer">Kalagana</a>
+              <span>an offline panchang &amp; festival calculator, built and open-sourced by me</span>
+            </h3>
+            <p class="oss-desc">
+              <strong>Kalagana</strong> computes a full Drik Panchang — the five limbs of the Hindu calendar — plus
+              Hindu, Islamic and national festival dates, entirely offline in pure Python. No network calls, no
+              database, no downloaded ephemeris files, no third-party dependencies: the positional astronomy is
+              implemented from first principles using Jean Meeus' algorithms.
+            </p>
+            <div class="oss-links">
+              <a class="oss-badge" href="https://pypi.org/project/kalagana/" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                pip install kalagana
+              </a>
+              <a class="oss-badge" href="https://github.com/mitjangid/Kalagana" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                Source on GitHub
+              </a>
+              <span class="oss-badge" style="cursor:default">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                Pure Python · zero dependencies
+              </span>
             </div>
           </div>
         </div>
